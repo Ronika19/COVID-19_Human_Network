@@ -1,0 +1,6 @@
+python3 COVID19_Human_NodesAll.py
+python3 DEG_Cluster.py
+python3 DEGClusters_2_WGCNAModules.py
+python3 DEG_Module_Enrichment.py
+python3 Upregulated_NonStatistical_DEGs.py
+python3 DEG_NonDEG_Module_Pathway.py
