@@ -5,7 +5,7 @@ Requirements:
 2. Python version >= 3.6 
 
 
-To run the python scripts and generate output you need to run the shell script (Run_Codes.sh) by the following command:
+To run the python scripts and generate output you need to run the shell script (Network_Analysis.sh) by the following command:
 sh Network_Analysis.sh
 
 Input Files for Network analysis of COVID-19 infected patients:
