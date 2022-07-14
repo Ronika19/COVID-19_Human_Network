@@ -2,6 +2,7 @@ import re
 import glob
 import pathlib
 from pathlib import Path
+from Human_HealthyVsSevere_DEG.Nodes_Preprocess import Nodes
 from Human_HealthyVsSevere_DEG.Upregulated_NonStatistical_DEGs import NonStatistical_DEG
 
 class DEG_NonDEG_Module:
@@ -20,52 +21,22 @@ class DEG_NonDEG_Module:
 			module_length.append(len(split_line1))
 			mod_count += 1
 
-		file2 = open(infile2,'r')
-		for i in range(2):
-			line2 = file2.readline()
-		transcript_id, locus_tag, fold_change, pvalue = [],[],[],[];
-		while line2:
-			split_line2 = (line2.rstrip()).split('\t')
-			#transcript_id.append(split_line2[3])
-			locus_tag.append(split_line2[0])
-			fold_change.append(split_line2[2])
-			pvalue.append(split_line2[6])
-			line2 = file2.readline()
+		dict_1 = Nodes().data_extract(infile2, 1)
+		locus_tag, fold_change, pvalue = dict_1['arr_0'], dict_1['arr_2'], dict_1['arr_6']
+		
+		dict_2 = Nodes().data_extract(infile3, 0)
+		ltag, tid = dict_2['arr_1'], dict_2['arr_4']
+		
+		dict_3 = Nodes().data_extract(infile4, 1)
+		locusid, transcript_tag = dict_3['arr_0'],[]
+		for i in range(len(locusid)):
+			if (locusid[i] in ltag):
+				indexes = int(ltag.index(locusid[i]))
+				transcript_tag.append(tid[indexes])
 
-		file4 = open(infile3,'r')
-		ltag, tid = [],[];
-		for line4 in file4:
-			split_line4 = (line4.rstrip()).split('\t')
-			ltag.append(split_line4[1])
-			tid.append(split_line4[4]) # Entrez Ids
-
-		file5 = open(infile4,'r')
-		for i in range(2):
-			line5 = file5.readline()
-		locusid, transcript_tag = [],[]
-		while line5:
-			split_line5 = (line5.rstrip()).split('\t')
-			locusid.append(split_line5[0])
-			if (split_line5[0] in ltag):
-				indexes = int(ltag.index(split_line5[0]))
-				transcript_tag.append(tid[indexes])	# Entrez Ids
-			line5 = file5.readline()
-
-		file3 = open(infile5,'r')
-		for i in range(2):
-			line3 = file3.readline()
-		modules, transcriptid, locustag, expression_foldchange, expression_pvalue = [],[],[],[],[];
-		module_foldchange, module_fishertest = [],[];
-		while line3:
-			split_line3 = (line3.rstrip()).split('\t')
-			modules.append(split_line3[0])
-			transcriptid.append(split_line3[1]); #print(transcriptid);
-			locustag.append(split_line3[2])
-			expression_foldchange.append(split_line3[3])
-			expression_pvalue.append(split_line3[4])
-			module_foldchange.append(split_line3[5])
-			module_fishertest.append(split_line3[6])
-			line3 = file3.readline()
+		dict_4 = Nodes().data_extract(infile4, 1)
+		modules, transcriptid, locustag, expression_foldchange, expression_pvalue =  dict_4['arr_0'], dict_4['arr_1'], dict_4['arr_2'], dict_4['arr_3'], dict_4['arr_4']
+		module_foldchange, module_fishertest = dict_4['arr_5'], dict_4['arr_6']
 
 		outfile = open(outfile,'w')
 		counter=0;
@@ -92,7 +63,7 @@ class DEG_NonDEG_Module:
 			#if (float(transcript_count/int(module_length[i])) >= 0.9):
 			print(module[i], transcript_deg_count, transcript_nondeg_count, transcript_count, module_length[i], str(float(transcript_count/int(module_length[i]))))
 			outfile.write(str(module[i])+'\t'+str(transcript_deg_count)+'\t'+str(non_author_deg)+'\t'+str(transcript_nondeg_count)+'\t'+str(transcript_count)+'\t'+str(module_length[i])+'\t'+str(float(transcript_count/int(module_length[i])))+'\t'+str(float(transcript_deg_count/int(module_length[i])))+'\n') # DEG_Percent_In_Module: These are the DEGs that show Fold change > 1.5 or Fold change < -1.5, and Pvalue <= 0.05.
-
+		
 		output_files = glob.glob('Output_Files/*'); print(output_files);
 		keep_files = ['Output_Files/Human_DEGMod_Enrichment.txt', 'Output_Files/UpDownRegulatedNonDEGs_In_DEGenrichedModules.txt', 'Output_Files/DEG_NonDEG_Module_Pathway.txt']
 		for f in output_files:

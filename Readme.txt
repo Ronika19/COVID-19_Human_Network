@@ -6,9 +6,9 @@ Requirements:
 
 
 To run the python scripts and generate output you need to run the shell script (Run_Codes.sh) by the following command:
-sh Run_Codes.sh
+sh Network_Analysis.sh
 
-Input Files for Acute and Chronic Wound Infections:
+Input Files for Network analysis of COVID-19 infected patients:
 1. 'KEGG_Human_AllPathways.txt' file contains the pathway annotations for Human
 2. 'Module_Assignment_COVID19_Human_WGCNA.tsv' file contains the module assignment of Human genes involved in the network.
 3. 'Healthy_Vs_ICU_Significant.txt' file contain the upregulated and downregulated DEGs respectively for ICU COVID-19 patients vs Healthy humans.
