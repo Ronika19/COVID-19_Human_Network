@@ -27,7 +27,7 @@ class Nodes:
 			lines = re.sub('\..*','',line1.rstrip()); #print(lines);
 			file2.write(lines+'\n')
 
-		dict1 = data_extract(infile2,5)
+		dict1 = self.data_extract(infile2,5)
 		lines = dict1['arr_8']
 		gene_id, transcript_id = [],[];
 		for l in lines:
@@ -37,10 +37,10 @@ class Nodes:
 			gene_id.append((split_l[0]).rstrip('"'))
 			transcript_id.append((split_l[2]).rstrip('"')); 
 
-		dict2 = data_extract(infile3,0)
+		dict2 = self.data_extract(infile3,0)
 		entrezid, geneid, transcriptid = dict2['arr_4'],dict2['arr_1'],dict2['arr_2']
 		
-		dict3 = data_extract(infile4,1)
+		dict3 = self.data_extract(infile4,1)
 		transcript, logfc = dict3['arr_0'],dict3['arr_2']
 		file5 = open(outfile2,'w'); file5_1 = open(outfile4,'w'); file6 = open(outfile3,'w'); file6_1 = open(outfile5,'w');
 		for i in range(len(transcript)):
@@ -58,7 +58,7 @@ class Nodes:
 			#elif (transcript[i] not in transcript_id):
 			#	file6.write(transcript[i]+'\n')
 		
-		dict4 = data_extract(infile5,1)
+		dict4 = self.data_extract(infile5,1)
 		transcript = dict4['arr_0']
 		file8 = open(outfile6,'w'); file9 = open(outfile7,'w');
 		for i in range(len(transcript)):
