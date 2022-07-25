@@ -51,9 +51,9 @@ class Nodes:
 					indices2 = int(geneid.index(gene))
 					file5.write(entrezid[indices2]+'\n')
 					file6.write(gene+'\t'+entrezid[indices2]+'\n')
-					if (float(logfc) >= 1):
+					if (float(logfc[i]) >= 1):
 						file5_1.write(entrezid[indices2]+'\n')
-					elif (float(logfc) <= -1):
+					elif (float(logfc[i]) <= -1):
 						file6_1.write(entrezid[indices2]+'\n')
 			#elif (transcript[i] not in transcript_id):
 			#	file6.write(transcript[i]+'\n')
