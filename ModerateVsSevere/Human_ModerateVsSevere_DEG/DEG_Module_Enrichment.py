@@ -4,6 +4,7 @@ from .Data_Process import Data_Processer
 
 class DEG_Enrichment:
 	def DataPreprocess(self):
+		Data_Processer.DataPreprocess()
 		fl_list = ['Input_Files/Moderate_Vs_Severe_Significant.txt', 'Output_Files/Human_Cluster_DEG_BiologicalReplicates.txt']
 		Cluster = Data_Processer.DEG_Cluster(fl_list[0], fl_list[1])
 
