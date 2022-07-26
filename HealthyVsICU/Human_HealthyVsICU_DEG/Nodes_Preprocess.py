@@ -5,7 +5,7 @@ class Nodes:
 		f = open(infile, 'r')
 		lines = f.readlines()
 		dict_array = {}
-		split_l = ((lines[1]).rstrip()).split('\t')
+		split_l = ((lines[5]).rstrip()).split('\t')
 		for i in range(len(split_l)):
 			dict_array['arr_'+str(i)] = []
 		if (deletes == 0):
