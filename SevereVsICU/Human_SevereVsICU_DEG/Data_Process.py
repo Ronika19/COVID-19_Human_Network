@@ -7,7 +7,7 @@ class Data_Processer:
 		outfile_entrez_list = ['Output_Files/SevereVsICU_Significant_EntrezIDs.txt', 'Output_Files/SevereVsICU_Up_Significant_EntrezIDs.txt', 'Output_Files/SevereVsICU_Down_Significant_EntrezIDs.txt', 'Output_Files/SevereVsICU_EntrezIDs.txt']
 		outfile_genehandles_list = ['Output_Files/COVID19_Human_NodesAll.txt', 'Output_Files/SevereVsICU_Significant_GeneHandles.txt', 'Output_Files/SevereVsICU_GeneHandles.txt']
 
-		Nodes_Preprocess = Nodes.Nodes_Process(infile_list[0], outfile_genehandles_list[0], infile_list[1], infile_list[2], infile_list[3], outfile_entrez_list[0], outfile_genehandles_list[1], outfile_entrez_list[1], outfile_entrez_list[2], infile_list[4], outfile_entrez_list[3], outfile_genehandles_list[2])
+		Nodes_Preprocess = Nodes().Nodes_Process(infile_list[0], outfile_genehandles_list[0], infile_list[1], infile_list[2], infile_list[3], outfile_entrez_list[0], outfile_genehandles_list[1], outfile_entrez_list[1], outfile_entrez_list[2], infile_list[4], outfile_entrez_list[3], outfile_genehandles_list[2])
 
 	def DEG_Cluster(infile, outfile):
 		f = open(outfile,'w')
